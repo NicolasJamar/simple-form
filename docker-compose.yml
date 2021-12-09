@@ -29,10 +29,10 @@
         PMA_USER: "root"
         PMA_PASSWORD: "root"
     mail:
-      image: mailhog/mailhog:latest
-      restart: always
+      image: "mailhog/mailhog:latest"
+      restart: "always"
       ports:
-        - 1025:1025
-        - 8081:8025
+        - "1025:1025"
+        - "8081:8025"
   volumes: 
     mysql_db: 
