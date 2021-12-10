@@ -16,7 +16,9 @@ COPY conf/php.ini /usr/local/etc/php/php.ini
 COPY conf/vhost.conf /etc/apache2/sites-available/000-default.conf
 COPY conf/apache.conf /etc/apache2/conf-available/z-src.conf
 RUN a2enmod rewrite remoteip && \
-	chown -R www-data /src
+	chown -R www-data /src \
+	 && sed -i "s|DocumentRoot /var/www/html|DocumentRoot /src|" /etc/apache2/sites-available/000-default.conf \
+	 && echo "ServerName localhost" | tee /etc/apache2/conf-available/servername.conf && a2enconf servername
 
 #Rights on the env
 RUN sed -ri 's/^www-data:x:33:33:/www-data:x:1000:50:/' /etc/passwd
