@@ -14,7 +14,7 @@ COPY conf/php.ini /usr/local/etc/php/php.ini
 #Config Apache
 COPY conf/vhost.conf /etc/apache2/sites-available/000-default.conf
 COPY conf/apache.conf /etc/apache2/conf-available/z-src.conf
-RUN a2enmod rewrite remoteip mpm_prefork && \
+RUN a2enmod rewrite remoteip && \
     a2enconf z-src
 
 #Rights on the env
