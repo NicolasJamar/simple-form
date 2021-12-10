@@ -13,7 +13,8 @@ RUN docker-php-ext-install mysqli pdo_mysql pdo_pgsql pgsql session soap
 COPY conf/php.ini /usr/local/etc/php/php.ini
 
 #Config Apache
-RUN a2enmod rewrite remoteip mpm_prefork
+RUN a2enmod rewrite remoteip mpm_prefork && \
+    a2enconf z-src
 
 #Rights on the env
 RUN sed -ri 's/^www-data:x:33:33:/www-data:x:1000:50:/' /etc/passwd
