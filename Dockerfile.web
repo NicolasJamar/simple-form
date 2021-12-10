@@ -13,6 +13,9 @@ RUN docker-php-ext-install mysqli pdo_mysql pdo_pgsql pgsql session soap
 COPY conf/php.ini /usr/local/etc/php/php.ini
 
 #Config Apache
+#Config Apache
+COPY conf/vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY conf/apache.conf /etc/apache2/conf-available/z-src.conf
 RUN a2enmod rewrite remoteip
 
 #Rights on the env

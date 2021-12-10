@@ -1,5 +1,7 @@
 <?php
 
+echo "Salut JC !";
+
 require_once("connexion.php");
 
 // open the $_SESSION
