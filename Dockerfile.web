@@ -3,6 +3,8 @@ FROM php:8.0.13-apache
 
 WORKDIR ./src
 
+ENV APP_HOME /var/www/html
+
 #Install libraries for PHP
 RUN apt-get update && apt-get install -y libxml2-dev libpq-dev && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
 RUN docker-php-ext-install mysqli pdo_mysql pdo_pgsql pgsql session soap
@@ -16,6 +18,9 @@ RUN a2enmod rewrite remoteip && \
 
 #Rights on the env
 RUN sed -ri 's/^www-data:x:33:33:/www-data:x:1000:50:/' /etc/passwd
+
+#change ownership of our applications
+RUN chown -R www-data:www-data $APP_HOME
 
 #Config Apache
 COPY conf/vhost.conf /etc/apache2/sites-available/000-default.conf
