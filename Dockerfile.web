@@ -19,5 +19,6 @@ RUN sed -ri 's/^www-data:x:33:33:/www-data:x:1000:50:/' /etc/passwd
 
 #Config Apache
 COPY conf/vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY conf/apache.conf /etc/apache2/conf-available/z-src.conf
 
 CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground
