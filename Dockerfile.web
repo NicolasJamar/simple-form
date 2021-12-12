@@ -14,7 +14,7 @@ COPY conf/php.ini /usr/local/etc/php/php.ini
 
 #Config Apache
 RUN a2enmod rewrite remoteip && \
-	chown -R www-data ./
+    a2enconf z-src
 
 #Rights on the env
 RUN sed -ri 's/^www-data:x:33:33:/www-data:x:1000:50:/' /etc/passwd
