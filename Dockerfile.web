@@ -1,5 +1,5 @@
 #Install Apache & PHP
-WORKDIR /src
+WORKDIR ./src
 
 FROM php:8.0.13-apache
 
